@@ -1,0 +1,20 @@
+package main
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func sortedArrayToBST(nums []int) *TreeNode {
+	if len(nums) == 0 {
+		return nil
+	}
+
+	n := len(nums)
+	mid := n / 2
+	root := &TreeNode{Val: nums[mid]}
+	root.Left = sortedArrayToBST(nums[:mid])
+	root.Right = sortedArrayToBST(nums[mid+1:])
+	return root
+}
